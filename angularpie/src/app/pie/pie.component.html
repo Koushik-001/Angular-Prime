@@ -1,0 +1,8 @@
+<div  class="row">
+  <apx-chart *ngFor = "let col of chartoptions"
+      [series]="col.series"
+      [labels]="col.labels"
+      [chart]="col.chart"
+></apx-chart>
+<button (click)="optfun(data)" >+1</button>
+</div>

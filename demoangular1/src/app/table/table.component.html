@@ -1,0 +1,78 @@
+<link rel="stylesheet" href="./table.component.scss" />
+
+<div class="mainTable">
+  <p-table
+    #myTab
+    [value]="tableData"
+    [paginator]="true"
+    [rows]="5"
+    [rowsPerPageOptions]="[5, 10, 15, 20]"
+    [totalRecords]="15"
+    [globalFilterFields]="['firstname', 'lastname', 'age']"
+  >
+    <ng-template pTemplate="caption">
+      <button
+        pButton
+        class="p-button-outlined"
+        (click)="clear(myTab)"
+      >
+        <span>
+          CLEAR
+          <i class="pi pi-filter-slash"></i>
+        </span>
+      </button>
+      <input
+        class="inpfield"
+        placeholder="Global search"
+        pInputText
+        (input)="changefun($event, myTab)"
+      />
+      <input
+        class="inpfield"
+        type="text"
+        pInputText
+        (input)="handleChange($event, 'firstname', myTab)"
+        placeholder="First Name"
+      />
+      <input
+        class="inpfield"
+        type="text"
+        pInputText
+        (input)="handleChange($event, 'lastname', myTab)"
+        placeholder="Last Name"
+      />
+      <input
+        class="inpfield"
+        type="text"
+        pInputText
+        (input)="handleChange($event, 'age', myTab)"
+        placeholder="Age"
+      />
+    </ng-template>
+    <ng-template pTemplate="header">
+      <tr>
+        <th>First Name
+          <p-columnFilter type="text" field="firstname" display="menu"></p-columnFilter>
+        </th>
+        <th>Last Name
+          
+          <p-columnFilter type="text" field="lastname" display="menu"></p-columnFilter>
+        </th>
+        <th>Age
+          
+          <p-columnFilter type="text" field="age" display="menu"></p-columnFilter>
+        </th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-people>
+      <tr>
+        <td>{{ people.firstname }}</td>
+        <td>{{ people.lastname }}</td>
+        <td>{{ people.age }}</td>
+      </tr>
+    </ng-template>
+    
+  </p-table>
+  <button pButton (click)="subfun($event)" type="button" >SUBMIT</button>
+
+</div>
